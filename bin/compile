@@ -35,14 +35,13 @@ then
   rm -rf $GM_SOURCE_DIR
   mkdir -p $GM_SOURCE_DIR
   mkdir -p $GM_CACHE_DIR
-  ln -s /usr/lib/x86_64-linux-gnu/libwebp.so.6 /usr/lib/x86_64-linux-gnu/libwebp.so.5
 
   PACKAGE="https://downloads.sourceforge.net/project/graphicsmagick/graphicsmagick/$GRAPHICS_MAGICK_VERSION/GraphicsMagick-$GRAPHICS_MAGICK_VERSION.tar.gz"
   curl $PACKAGE -L -o - | tar xzf - -C $GM_SOURCE_DIR 2>&1 | indent
   cd $GM_SOURCE_DIR/GraphicsMagick-$GRAPHICS_MAGICK_VERSION
 
   echo "Building for the first time this will take a while." | indent
-  ./configure --prefix=$GM_CACHE_DIR >/dev/null
+  ./configure --with-webp=false --prefix=$GM_CACHE_DIR >/dev/null
   make install >/dev/null
 
   echo "Cleaning the download directory" | indent
