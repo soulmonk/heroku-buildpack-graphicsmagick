@@ -1,7 +1,7 @@
 heroku-buildpack-graphicsmagick
 ===============================
 
-Use the GraphicsMagick (1.3.30) inside Heroku. Works with [`heroku-18`](https://devcenter.heroku.com/articles/heroku-18-stack).
+Use the GraphicsMagick (1.3.36) inside Heroku. Works with [`heroku-20`](https://devcenter.heroku.com/articles/heroku-18-stack).
 
 ## Usage
 
