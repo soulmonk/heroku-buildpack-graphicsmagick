@@ -10,6 +10,7 @@ CACHE_DIR=$2
 ENV_DIR=$3
 
 GM_FORCE_REBUILD=$(cat $ENV_DIR/GM_FORCE_REBUILD)
+GM_DEBUG=$(cat $ENV_DIR/GM_DEBUG)
 
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
@@ -21,7 +22,7 @@ arrow() {
   sed -u 's/^/-----> /'
 }
 
-if [ -z "$(ls -L $ENV_DIR/GRAPHICS_MAGICK_VERSION)" ]
+if [ -f "$ENV_DIR/GRAPHICS_MAGICK_VERSION" ]
 then
   GRAPHICS_MAGICK_VERSION=$(cat $ENV_DIR/GRAPHICS_MAGICK_VERSION)
   echo "using version from environment: $GRAPHICS_MAGICK_VERSION" | arrow
