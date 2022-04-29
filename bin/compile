@@ -7,6 +7,8 @@ source `dirname $0`/../configs.sh
 # parse and derive params
 BUILD_DIR=$1
 CACHE_DIR=$2
+ENV_DIR=$3
+
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
 indent() {
@@ -30,6 +32,8 @@ mkdir -p $GM_CACHE_DIR
 
 GRAPHICS_MAGICK_VERSION_VERSION=${GRAPHICS_MAGICK_VERSION_VERSION:-$GRAPHICS_MAGICK_VERSION}
 echo "Debug is: $GM_DEBUG" | arrow
+echo "GM_DEBUG from env dir = $(cat $ENV_DIR/GM_DEBUG)"
+echo "GM_FORCE_REBUILD from env dir = $(cat $ENV_DIR/GM_FORCE_REBUILD)"
 if [ "$GM_DEBUG" = 'true' ]
 then
   echo "Debug info" | arrow
