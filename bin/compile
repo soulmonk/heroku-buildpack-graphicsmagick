@@ -29,7 +29,7 @@ GM_CACHE_DIR=$CACHE_DIR/graphicsmagick
 mkdir -p $GM_CACHE_DIR
 
 GRAPHICS_MAGICK_VERSION_VERSION=${GRAPHICS_MAGICK_VERSION_VERSION:-$GRAPHICS_MAGICK_VERSION}
-echo "Debug is: GM_DEBUG" | arrow
+echo "Debug is: $GM_DEBUG" | arrow
 if [ "$GM_DEBUG" = 'true' ]
 then
   echo "Debug info" | arrow
