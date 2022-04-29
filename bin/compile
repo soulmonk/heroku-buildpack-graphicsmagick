@@ -7,6 +7,10 @@ source `dirname $0`/../configs.sh
 # parse and derive params
 BUILD_DIR=$1
 CACHE_DIR=$2
+ENV_DIR=$3
+
+GM_FORCE_REBUILD=$(cat $ENV_DIR/GM_FORCE_REBUILD)
+
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
 indent() {
@@ -16,6 +20,12 @@ indent() {
 arrow() {
   sed -u 's/^/-----> /'
 }
+
+if [ -f "$ENV_DIR/GRAPHICS_MAGICK_VERSION" ]
+then
+  GRAPHICS_MAGICK_VERSION=$(cat $ENV_DIR/GRAPHICS_MAGICK_VERSION)
+  echo "using version from environment: $GRAPHICS_MAGICK_VERSION" | arrow
+fi
 
 echo "Installing graphicsmagick $GRAPHICS_MAGICK_VERSION" | arrow
 # we need this directory, it's our destination
