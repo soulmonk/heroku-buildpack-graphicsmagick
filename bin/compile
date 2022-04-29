@@ -9,6 +9,8 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
+GM_FORCE_REBUILD=$(cat $ENV_DIR/GM_FORCE_REBUILD)
+
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
 indent() {
@@ -18,6 +20,12 @@ indent() {
 arrow() {
   sed -u 's/^/-----> /'
 }
+
+if [ -z "$(ls -L $ENV_DIR/GRAPHICS_MAGICK_VERSION)" ]
+then
+  GRAPHICS_MAGICK_VERSION=$(cat $ENV_DIR/GRAPHICS_MAGICK_VERSION)
+  echo "using version from environment: $GRAPHICS_MAGICK_VERSION" | arrow
+fi
 
 echo "Installing graphicsmagick $GRAPHICS_MAGICK_VERSION" | arrow
 # we need this directory, it's our destination
@@ -30,10 +38,6 @@ GM_SOURCE_DIR=$CACHE_DIR/graphicsmagick-$GRAPHICS_MAGICK_VERSION
 GM_CACHE_DIR=$CACHE_DIR/graphicsmagick
 mkdir -p $GM_CACHE_DIR
 
-GRAPHICS_MAGICK_VERSION_VERSION=${GRAPHICS_MAGICK_VERSION_VERSION:-$GRAPHICS_MAGICK_VERSION}
-echo "Debug is: $GM_DEBUG" | arrow
-echo "GM_DEBUG from env dir = $(cat $ENV_DIR/GM_DEBUG)"
-echo "GM_FORCE_REBUILD from env dir = $(cat $ENV_DIR/GM_FORCE_REBUILD)"
 if [ "$GM_DEBUG" = 'true' ]
 then
   echo "Debug info" | arrow
