@@ -10,7 +10,6 @@ CACHE_DIR=$2
 ENV_DIR=$3
 
 GM_FORCE_REBUILD=$(cat $ENV_DIR/GM_FORCE_REBUILD)
-GM_DEBUG=$(cat $ENV_DIR/GM_DEBUG)
 
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
@@ -38,15 +37,6 @@ mkdir -p $GM_VENDOR_DIR
 GM_SOURCE_DIR=$CACHE_DIR/graphicsmagick-$GRAPHICS_MAGICK_VERSION
 GM_CACHE_DIR=$CACHE_DIR/graphicsmagick
 mkdir -p $GM_CACHE_DIR
-
-if [ "$GM_DEBUG" = 'true' ]
-then
-  echo "Debug info" | arrow
-  echo "$GRAPHICS_MAGICK_VERSION_VERSION"
-  echo "$GM_FORCE_REBUILD"
-  echo "$(ls -L $GM_CACHE_DIR)"
-  echo "$(ls -L $GM_VENDOR_DIR)"
-fi
 
 if [ "$GM_FORCE_REBUILD" = 'true' ] || [ -z "$(ls -L $GM_CACHE_DIR)" ] && [ -z "$(ls -L $GM_VENDOR_DIR)" ]
 then
