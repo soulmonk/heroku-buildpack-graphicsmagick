@@ -9,7 +9,10 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
-GM_FORCE_REBUILD=$(cat $ENV_DIR/GM_FORCE_REBUILD)
+if [ -f "$ENV_DIR/GM_FORCE_REBUILD" ]
+then
+  GM_FORCE_REBUILD=$(cat $ENV_DIR/GM_FORCE_REBUILD)
+fi
 
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
